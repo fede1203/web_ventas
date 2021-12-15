@@ -1,0 +1,20 @@
+{% extends "AppVentas/base.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+<form action="/AppVentas/blan_form" method="POST"> {% csrf_token%}
+
+    <p>Marca: <input type="text" name="marca"></p>
+    <p>Descripcion: <input type="text" name="descripcion"></p>
+    <p>Color: <input type="text" name="color"></p>
+    <p>Plazas: <input type="number" name="plazas"></p>
+    <p>Precio: <input type="number" name="precio"></p>
+
+    <input type="submit" value="Enviar">
+
+
+
+
+</form>
+
+{% endblock %}

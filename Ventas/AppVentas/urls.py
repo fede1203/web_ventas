@@ -9,4 +9,6 @@ urlpatterns = [
     path('cocinas', views.cocinas, name='Cocinas'),
     path('electrodomesticos', views.electrodomesticos, name='Electrodomesticos'),
     path('blan_form', views.blan_form, name="Blan_form"),
+    path('cocinaFormulario', views.cocinaFormulario, name="CocinaFormulario"),
+    path('electroFormulario', views.electroFormulario, name="ElectroFormulario"),
 ]

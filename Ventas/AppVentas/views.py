@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from AppVentas.models import Blancos
+from AppVentas.models import *
+
 
 
 
@@ -21,7 +22,35 @@ def blan_form(request):
 
 
 
+def cocinaFormulario(request):
 
+    if request.method == "POST":
+        cocina_insta = Cocinas(request.POST["marca"], request.POST["color"], request.POST["canti_hornallas"])
+
+        cocina_insta.save()
+
+        return render(request, 'AppVentas/inicio.html')
+
+
+
+
+    return render(request,"AppVentas/cocinaFormulario.html") 
+
+
+
+def electroFormulario(request):
+
+    if request.method == "POST":
+        blanco_insta = Electrodomesticos(request.POST["marca"], request.POST["descripcion"],request.POST["modelo"], request.POST["color"], request.POST["voltage"])
+
+        blanco_insta.save()
+
+        return render(request, 'AppVentas/inicio.html')
+
+
+
+
+    return render(request,"AppVentas/electroFormulario.html")     
 
 
 

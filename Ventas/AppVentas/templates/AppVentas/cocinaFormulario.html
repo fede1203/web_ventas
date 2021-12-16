@@ -1,0 +1,19 @@
+{% extends "AppVentas/base.html" %}
+{% load static %}
+
+{% block contenidoQueCambia %}
+<form action="/AppVentas/cocinaFormulario" method="POST"> {% csrf_token%}
+
+    <p>Marca: <input type="text" name="marca"></p>
+    <p>Color: <input type="text" name="color"></p>
+    <p>Cantidad hornallas: <input type="number" name="canti_hornallas"></p>
+    
+
+    <input type="submit" value="Enviar">
+
+
+
+
+</form>
+
+{% endblock %}

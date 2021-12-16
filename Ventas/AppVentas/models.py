@@ -11,8 +11,7 @@ class Cocinas(models.Model):
     marca = models.CharField(max_length=60)
     color = models.CharField(max_length=30)    
     canti_hornallas = models.IntegerField()
-    con_horno = models.BooleanField()
-
+    
 class Electrodomesticos(models.Model):
     tipo = models.CharField(max_length=60) 
     marca = models.CharField(max_length=60)

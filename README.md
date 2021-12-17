@@ -1,1 +1,3 @@
 # web_ventas
+Preentrega de pagina web, del proyecto final, contiene tres modelos: …
+…Blancos, Cocinas, Electrodomesticos, cada uno con sus vistas y templates correspondietes, con herencia de la clase base en html

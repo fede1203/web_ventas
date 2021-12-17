@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from AppVentas.models import *
+from AppVentas.forms import *
 
 
 
@@ -9,48 +10,62 @@ from AppVentas.models import *
 def blan_form(request):
 
     if request.method == "POST":
-        blanco_insta = Blancos(request.POST["marca"], request.POST["descripcion"], request.POST["color"], request.POST["plazas"],request.POST["precio"])
 
-        blanco_insta.save()
+        miFormulario = BlancoFormulario(request.POST)
 
-        return render(request, 'AppVentas/inicio.html')
+        if miFormulario.is_valid():
+             
+            informacion = miFormulario.cleaned_data
+
+            blanco_insta = blanco_insta = Blancos(marca=informacion["marca"], descripcion=informacion["descripcion"], color=informacion["color"], plazas=informacion["plazas"],precio=informacion["precio"])
+
+            blanco_insta.save()
+
+            return render(request, 'AppVentas/inicio.html')
+
+    else:
+        miFormulario = BlancoFormulario()
 
 
-
-
-    return render(request,"AppVentas/blan_form.html") 
-
+    return render(request,"AppVentas/blan_form.html", {'miFormulario':miFormulario})    
 
 
 def cocinaFormulario(request):
 
     if request.method == "POST":
-        cocina_insta = Cocinas(request.POST["marca"], request.POST["color"], request.POST["canti_hornallas"])
+        miFormulario = CocinaFormulario(request.POST)
+
+        if miFormulario.is_valid():
+           informacion = miFormulario.cleaned_data
+
+        cocina_insta = Cocinas(marca = informacion["marca"], color=informacion["color"], canti_hornallas=informacion["canti_hornallas"])
 
         cocina_insta.save()
 
         return render(request, 'AppVentas/inicio.html')
+    else:
+        miFormulario = CocinaFormulario()
 
-
-
-
-    return render(request,"AppVentas/cocinaFormulario.html") 
-
+    return render(request,"AppVentas/cocinaFormulario.html", {'miFormulario':miFormulario}) 
 
 
 def electroFormulario(request):
 
     if request.method == "POST":
-        blanco_insta = Electrodomesticos(request.POST["marca"], request.POST["descripcion"],request.POST["modelo"], request.POST["color"], request.POST["voltage"])
+        miFormulario = ElectrodomesticosFormulario(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+        blanco_insta = Electrodomesticos(marca=informacion["marca"], descripcion=informacion["descripcion"],modelo=informacion["modelo"], color=informacion["color"], voltage=informacion["voltage"])
 
         blanco_insta.save()
 
         return render(request, 'AppVentas/inicio.html')
+    else:
+        miFormulario = ElectrodomesticosFormulario()
 
 
 
-
-    return render(request,"AppVentas/electroFormulario.html")     
+    return render(request,"AppVentas/electroFormulario.html", {'miFormulario': miFormulario})     
 
 
 

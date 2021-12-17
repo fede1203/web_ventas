@@ -2,13 +2,21 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+
+{%if miFormulario.errors%}
+
+    <p>ERROR</p>
+
+
+    {% endif %}
+
 <form action="/AppVentas/electroFormulario" method="POST"> {% csrf_token%}
 
-    <p>Marca: <input type="text" name="marca"></p>
-    <p>Descripcion: <input type="text" name="descripcion"></p>
-    <p>Modelo: <input type="text" name="modelo"></p>
-    <p>Color: <input type="text" name="color"></p>
-    <p>Voltage: <input type="number" name="voltage"></p>
+        <table>
+            
+        {{miFormulario.as_table }}
+    
+        </table>
     
 
     <input type="submit" value="Enviar">

@@ -2,13 +2,20 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+
+    {%if miFormulario.errors%}
+
+    <p>ERROR</p>
+
+
+    {% endif %}
 <form action="/AppVentas/blan_form" method="POST"> {% csrf_token%}
 
-    <p>Marca: <input type="text" name="marca"></p>
-    <p>Descripcion: <input type="text" name="descripcion"></p>
-    <p>Color: <input type="text" name="color"></p>
-    <p>Plazas: <input type="number" name="plazas"></p>
-    <p>Precio: <input type="number" name="precio"></p>
+
+    <table>
+    {{miFormulario.as_table }}
+
+    </table>
 
     <input type="submit" value="Enviar">
 
